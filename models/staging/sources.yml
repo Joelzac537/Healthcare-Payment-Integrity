@@ -1,0 +1,14 @@
+sources:
+  - name: payment_integrity
+    description: Raw CMS and OIG files subset to project scope by the Python extract and loaded as Parquet; all columns are STRING.
+    database: dbtlearn-507917
+    schema: raw_payment_integrity
+    tables:
+      - name: leie_exclusions
+        description: OIG exclusion list (Aug 2026 release), all states, one row per exclusion event.
+      - name: part_d_prescribers_2024
+        description: Medicare Part D prescriber summary, data year 2024, MA and FL, one row per prescriber.
+      - name: open_payments_general_2024
+        description: CMS Open Payments general payments, program year 2024, MA and FL recipients, one row per payment.
+      - name: nppes_providers
+        description: NPPES NPI registry snapshot (Nov 2026), MA and FL practice locations, one row per NPI.
