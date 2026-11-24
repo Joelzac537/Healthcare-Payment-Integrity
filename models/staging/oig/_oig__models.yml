@@ -1,0 +1,27 @@
+models:
+  - name: stg_leie_exclusions
+    description: >
+      Cleaned OIG LEIE exclusion list (Aug 2026 release), all states.
+      One row per exclusion event; the same NPI can appear more than once.
+      Placeholder NPIs (0000000000) are converted to null.
+    columns:
+      - name: npi
+        description: >
+          National Provider Identifier. Null when the source had the
+          placeholder 0000000000 (~89% of rows). Not unique: a provider
+          can have multiple exclusion events.
+
+      - name: exclusion_date
+        description: Date the exclusion took effect.
+        data_tests:
+          - not_null
+
+      - name: entity_type
+        description: >
+          'individual' if a last name is present, 'business' if a business
+          name is present, 'unknown' otherwise.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['individual', 'business']
